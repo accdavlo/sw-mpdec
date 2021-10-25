@@ -50,7 +50,7 @@ INTEGER            :: iarg, nargs
 CHARACTER(len=32)  :: arg
 !-------------------------------------------------------------------------------!
 
-InitialCondition = 214  
+InitialCondition = 1 
 
 nargs = command_argument_COUNT()
 IF (nargs > 0) THEN
@@ -60,147 +60,7 @@ IF (nargs > 0) THEN
 END IF
 
 SELECT CASE(InitialCondition)
-  CASE(100) ! Island
-    TEnd    = 1.0
-    Gravity = 9.8
-    nElemsX = 400
-    nElemsY = 120
-    MESH_X0 = (/-5.0,-2.0/)
-    MESH_X1 = (/5.0,2.0/)
-    BoundaryConditionsType = (/1,1,1,1/)
-    BathymetryFlag = 2      
-  CASE(101,102) ! Island at rest & Island at rest with perturbation
-    TEnd    = 2.0
-    Gravity = 9.8
-    nElemsX = 400
-    nElemsY = 120
-    MESH_X0 = (/-5.0,-2.0/)
-    MESH_X1 = (/5.0,2.0/)
-    BoundaryConditionsType = (/1,1,1,1/)
-    BathymetryFlag = 2      
-  CASE(200) ! Constant State
-    TEnd    = 1.0
-    Gravity = 9.8
-    nElemsX = 100
-    nElemsY = 100
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/1.0,1.0/)
-    BoundaryConditionsType = (/1,1,1,1/)
-    BathymetryFlag = 0      
-  CASE(211) ! Dam Break
-    TEnd    = 5.0
-    Gravity = 9.8
-    nElemsX = 100
-    nElemsY = 100
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/40.0,40.0/)
-    BoundaryConditionsType = (/2,2,2,2/)
-    BathymetryFlag = 0      
-  CASE(212) ! Circular Dam Break
-    TEnd    = 1.0
-    Gravity = 9.8
-    nElemsX = 100
-    nElemsY = 100
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/40.0,40.0/)
-    BoundaryConditionsType = (/1,1,1,1/)
-    BathymetryFlag = 0      
-  CASE(213) ! Double Dam Break with obstacle
-    TEnd    = 1.0
-    Gravity = 9.8
-    nElemsX = 300
-    nElemsY = 10
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/40.0,20.0/)
-    BoundaryConditionsType = (/1,1,1,1/)
-    BathymetryFlag = 4      
-  CASE(214) ! Mario's Circular Dam Break
-    TEnd    = 0.8
-    Gravity = 9.8
-    nElemsX = 200
-    nElemsY = 200
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/50.0,50.0/)
-    BoundaryConditionsType = (/1,1,1,1/)
-    BathymetryFlag = 0      
-  CASE(221) ! Double Dam Break in X
-    TEnd    = 0.8
-    Gravity = 9.8
-    nElemsX = 300
-    nElemsY = 10
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/40.0,20.0/)
-    BoundaryConditionsType = (/1,1,1,1/)
-    BathymetryFlag = 0      
-  CASE(222) ! Double Dam Break in Y 
-    TEnd    = 0.8
-    Gravity = 9.8
-    nElemsX = 10
-    nElemsY = 300
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/20.0,40.0/)
-    BoundaryConditionsType = (/1,1,1,1/)
-    BathymetryFlag = 0      
-
-
-  CASE(223) ! Double Dam Break centered in Y 
-    TEnd    = 0.8
-    Gravity = 9.8
-    nElemsX = 3
-    nElemsY = 40
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/20.0,40.0/)
-    BoundaryConditionsType = (/1,1,1,1/)
-    BathymetryFlag = 0      
-
-  CASE(300) !*STEADY VORTEX p=1 (regularity)
-    TEnd    = 0.1
-    Gravity = 1.0
-    nElemsX = 1024
-    nElemsY = nElemsX
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/1.0,1.0/)
-    BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
-    BathymetryFlag = 0      
-  CASE(301) !*UNSTEADY VORTEX
-    TEnd    = 0.1
-    Gravity = 1.0
-    nElemsX = 30 
-    nElemsY = 30 
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/1.0,1.0/)
-    BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
-    BathymetryFlag = 0       
-  CASE(302,303,304,333) !*STEADY VORTEX p=2,3,4 (regularity)
-    TEnd    = 0.1
-    Gravity = 1.0
-    nElemsX = 5
-    nElemsY = nElemsX
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/1.0,1.0/)
-    BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
-    BathymetryFlag = 0      
-
-  CASE(306,307,308,309,292,293,294,295,299,280,281,282,283,284) !*STEADY VORTEX smooth e^-1/(1-r^2)^2 or (1-atan(r2))^2 or (1-atan(r2))^3 and gaussian
-    TEnd    = 0.1
-    Gravity = 1.0
-    nElemsX = 256
-    nElemsY = nElemsX
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/1.0,1.0/)
-    BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
-    BathymetryFlag = 0    
-
-  CASE(310) !*STEADY SMOOTH VORTEX
-    TEnd    = 0.1
-    Gravity = 9.81
-    nElemsX = 128
-    nElemsY = nElemsX
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/3.0,3.0/)
-    BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
-    BathymetryFlag = 0       
-  CASE(311,3110) !*UNSTEADY SMOOTH VORTEX
+  CASE(1) !*UNSTEADY SMOOTH VORTEX
     TEnd    = 0.1
     Gravity = 9.81
     nElemsX = 512
@@ -210,25 +70,7 @@ SELECT CASE(InitialCondition)
     BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
     BathymetryFlag = 0       
 
-  CASE(320) !*SMOOTH Waves Oscillations
-    TEnd    = 0.1
-    Gravity = 9.81
-    nElemsX = 128 
-    nElemsY = nElemsX
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/1.0,1.0/)
-    BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
-    BathymetryFlag = 0      
-  CASE(319) !*SMOOTH Waves Oscillations
-    TEnd    = 0.05
-    Gravity = 9.812
-    nElemsX = 128 
-    nElemsY = nElemsX
-    MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/1.0,1.0/)
-    BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
-    BathymetryFlag = 3      
-  CASE(321) !*LAKE AT REST
+  CASE(2) !*LAKE AT REST
     TEnd    = 0.1
     Gravity = 9.81
     nElemsX = 100 
@@ -237,15 +79,47 @@ SELECT CASE(InitialCondition)
     MESH_X1 = (/1.0,1.0/)
     BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
     BathymetryFlag = 1     
-  CASE(400) !*LAKE AT REST
-    TEnd    = 0.01
-    Gravity = 9.81
-    nElemsX = 32  
-    nElemsY = nElemsX
+
+  CASE(3) ! *PERTURBATION ANALYSIS ON WET-DRY LAKE AT REST 
+    TEnd    = 1.0
+    Gravity = 9.8
+    nElemsX = 400
+    nElemsY = 120
+    MESH_X0 = (/-5.0,-2.0/)
+    MESH_X1 = (/5.0,2.0/)
+    BoundaryConditionsType = (/1,1,1,1/)
+    BathymetryFlag = 2      
+
+  CASE(4) ! *CIRCULAR DAM BREAK 1 
+    TEnd    = 1.0
+    Gravity = 9.8
+    nElemsX = 100
+    nElemsY = 100
     MESH_X0 = (/0.0,0.0/)
-    MESH_X1 = (/1.0,1.0/)
-    BoundaryConditionsType = (/1,1,1,1/) !*PERIODIC BCs
+    MESH_X1 = (/40.0,40.0/)
+    BoundaryConditionsType = (/1,1,1,1/)
     BathymetryFlag = 0      
+
+  CASE(5) ! *CIRCULAR DAM BREAK 2 
+    TEnd    = 1.0
+    Gravity = 9.8
+    nElemsX = 200
+    nElemsY = 200
+    MESH_X0 = (/0.0,0.0/)
+    MESH_X1 = (/50.0,50.0/)
+    BoundaryConditionsType = (/1,1,1,1/)
+    BathymetryFlag = 0      
+
+  CASE(6) ! *WAVE OVER DRY ISLAND
+    TEnd    = 1.0
+    Gravity = 9.8
+    nElemsX = 400
+    nElemsY = 120
+    MESH_X0 = (/-5.0,-2.0/)
+    MESH_X1 = (/5.0,2.0/)
+    BoundaryConditionsType = (/1,1,1,1/)
+    BathymetryFlag = 2      
+
   CASE DEFAULT
     ErrorMessage = "Initial condition not implemented"
     WRITE(*,*) ErrorMessage
