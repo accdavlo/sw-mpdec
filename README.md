@@ -40,3 +40,14 @@ where **TestCase** is the number of the testcase and **NElems** will generate a 
   * **nOutputFiles**           - number of output files printed    
 
 By appropriately modifying these parameter and adding new codes, new test cases can be easily added to those already implemented.
+
+## Reconstruction of the primitive variable
+
+In the directory [weno-weights](weno-weights) the user can find two matlab scripts ([WENO.m](weno-weights/WENO.m) and 
+[WENO_double.m](weno-weights/WENO_double.m)) used by the authors to compute all the ingredients needed for a WENO reconstruction. 
+In particular, the two scripts provide the same results but the first one prints everything with symbolic notation whereas the second one only prints
+what it is needed for the reconstruction as a double. In both scripts, the user can set the number of cell averages,**J**, (odd number) and the quadrature points,
+**x_quads**, where the reconstruction has to be computed (already few gaussian quadrature rules are specified, the code is setup with the four-point rule).
+
+
+
