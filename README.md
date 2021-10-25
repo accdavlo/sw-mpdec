@@ -12,11 +12,11 @@ from a terminal and type **make**. This will compile the code and generate the e
 ## Run the test cases presented in the paper 
 
 In the paper, six test cases are presented:
-1. Unsteady smooth vortex
-1. Lake at rest (well-balanced)
+1. Unsteady smooth vortex (convergence)
+1. Lake at rest (well-balanced, convergence)
 1. Perturbation analysis (well-balanced, wet-dry)
-1. Circular dam break #1 (wet-dry)
-1. Circular dam break #2
+1. Circular dry dam break (wet-dry)
+1. Circular wet dam break
 1. Wave over dry island (wet-dry)
 
 In order to run them, the user can follow two simple procedures:
@@ -43,7 +43,7 @@ By appropriately modifying these parameter and adding new codes, new test cases 
 
 ## Reconstruction of the primitive variable
 
-In the directory [weno-weights](weno-weights) the user can find two matlab scripts ([WENO.m](weno-weights/WENO.m) and 
+In the directory [weno-weights](weno-weights) the user can find two matlab scripts ([WENO_sym.m](weno-weights/WENO_sym.m) and 
 [WENO_double.m](weno-weights/WENO_double.m)) used by the authors to compute all the ingredients needed for a WENO reconstruction. 
 In particular, the two scripts provide the same results but the first one prints everything with symbolic notation whereas the second one only prints
 what it is needed for the reconstruction as a double. In both scripts, the user can set the number of cell averages, **J**, (odd number) and the quadrature 
@@ -51,7 +51,7 @@ points, **x_quads**, where the reconstruction has to be computed (already few ga
 four-point rule). The codes print out
 * smoothness indicators
 * coefficients of lower order polynomials
-* ideal weights for the linear high order reconstruction
+* ideal weights for the linear high order reconstruction.
 
 
 
