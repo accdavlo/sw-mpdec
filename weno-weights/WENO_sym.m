@@ -3,25 +3,28 @@
 % 3 reconstructions v_r, with primitives V_r(x)=\int_{-inf}^x v_r(x) dx
 % v_r(x) has degree 2 so V_r(x) has degree 3 and it must interpolate 
 
+clear all
+clc
+
 syms x y
 
 J=5;       %number of cell averages (odd)
 K=(J+1)/2; %number of stencils and stencil lenght
 
-% Choose the quadrature points in which computing the reconstruction
-%x_quads=[-1/2*sqrt((3/5)), 0 ,1/2*sqrt((3/5))];
+% Choose the quadrature points in which we compute the reconstruction
+%x_quads=[-1/2*sqrt(sym(3/5)), 0 ,1/2*sqrt(sym(3/5))];
 %x_quads=[-1/2/sqrt(3),1/2/sqrt(3)];
 %x_quads=[0];
-%x_quads=[-(1/2),(1/2)];
-x_quads=[-0.5*sqrt(3/7+2/7*sqrt(6/5)),-0.5*sqrt(3/7-2/7*sqrt(6/5)),...
-    0.5*sqrt(3/7-2/7*sqrt((6/5))),0.5*sqrt((3/7)+(2/7)*sqrt((6/5)))];
-
+%x_quads=[-sym(1/2),sym(1/2)];
+x_quads=[-0.5*sqrt(sym(3/7)+sym(2/7)*sqrt(sym(6/5))),-0.5*sqrt(sym(3/7)-sym(2/7)*sqrt(sym(6/5))),...
+    0.5*sqrt(sym(3/7)-sym(2/7)*sqrt(sym(6/5))),0.5*sqrt(sym(3/7)+sym(2/7)*sqrt(sym(6/5)))];
 
 
 
 xj=[-K+1:K-1]; % index of cell averages
 
 x_sten=[-K+1-1/2:1/2]; %first stencil interface points
+
 % Computing lagrangian interpolation 
 for k=1:K+1
     phiBase(k)=sym(1);
@@ -33,7 +36,8 @@ for k=1:K+1
 end
 %phiBase={-(x-1)*(x-2)*(x-3)/6,x*(x-2)*(x-3)/2,-x*(x-1)*(x-3)/2,x*(x-1)*(x-2)/6};
 
-% auxiliary matrix to compute the low order polynomial coefficients
+
+% Auxiliary matrix to assemble the linear system
 M=zeros(K+1,K);
 for i=1:K+1
     for j=1:K
@@ -59,7 +63,39 @@ for k=1:K %stencil
 end
 
 
+% Compute smoothness indicators
+beta=sym(zeros(K,J,J));
+
+for m=1:K % stencil
+    for j=m:m+K-1 %coeffient U_j
+        for l=m:m+K-1 %coefficient U_l
+            for dd=1:K-1 % sum on derivatives
+                beta(m,l,j)=beta(m,l,j)+...
+                    int(diff(c{m,j},dd)*diff(c{m,l},dd),y,-1/2,1/2);
+            end
+        end 
+    end    
+end
+
+
+fprintf("!------------------------------------!\n")
+fprintf("!         Smoothness Indicators      !\n")
+fprintf("!------------------------------------!\n")
+for m=1:K
+    fprintf("beta%1d = ",m)
+    for j=m:m+K-1
+        for l=m:m+K-1
+            fprintf("+(%s*Q(%d)*Q(%d))",char(beta(m,l,j)),j-K,l-K)
+        end
+    end
+    fprintf("\n")
+end
+
+fprintf("\n")
+
+
 % Compute the coefficients of the high order polynomials
+
 M2=zeros(J+1,J);
 for i=1:J+1
     for j=1:J
@@ -78,7 +114,7 @@ for k=1:J+1
     end
 end
 
-hoCoefficients= (diff(phiBig)*M2);
+hoCoefficients= simplify(diff(phiBig)*M2);
 
 
 %for every quadrature point substitute it into the coefficient formula and
@@ -87,25 +123,25 @@ for x_quad = x_quads
 
     for i= 1:size(c,1)
         for j= 1:size(c,2)
-            c_quad(i,j)=double(subs(c{i,j},y,x_quad));
+            c_quad(i,j)=subs(c{i,j},y,x_quad);
         end
     end
     disp("x_quad")
     disp(x_quad)
-    %disp(latex(x_quad))
+    disp(latex(x_quad))
 %   
     disp("c_quad")
-    %disp(c_quad)
-    %disp(latex(c_quad))
+    disp(c_quad)
+    disp(latex(c_quad))
     disp(double(c_quad))
 
-    rhs=double(subs(hoCoefficients,y,x_quad));
-    Amat=((c_quad*c_quad.'));
-    d=(Amat\(c_quad*rhs.'));
+    rhs=subs(hoCoefficients,y,x_quad);
+    Amat=inv((c_quad*c_quad.'));
+    d=simplify(Amat*(c_quad*rhs.'));
     disp("d")
     disp(d)
-    %disp(latex(d))
-    %disp(double(d))
+    disp(latex(d))
+    disp(double(d))
     fprintf("Residual error")
 
     residu=double(d'*c_quad-rhs);
