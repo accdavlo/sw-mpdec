@@ -4,6 +4,8 @@ This is the public repository refering to the article [arXiv prepint to be put](
 
 This code is based on a finite volume WENO5 space discretization that is available at [FV-solver-SW](https://github.com/jbnunezd/fv-solver-sw.git) developed by Jonatan Núñez-de la Rosa.
 
+![Island](pictures/island.gif)
+
 ## Compile the code
 
 In order to compile the code the user can either go to [fv-solver-sw](fv-solver-sw) or [fv-solver-sw/src](fv-solver-sw/src)
