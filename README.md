@@ -9,7 +9,7 @@ This code is based on a finite volume WENO5 space discretization that is availab
 ## Compile the code
 
 In order to compile the code the user can either go to [fv-solver-sw](fv-solver-sw) or [fv-solver-sw/src](fv-solver-sw/src)
-from a terminal and type **make**. This will compile the code and generate the executable called **main** in [fv-solver-sw/bin](fv-solver-sw/bin).
+from a terminal and type **make**. This will compile the code and generate the executable called **main** in [fv-solver-sw/bin](fv-solver-sw/bin). Up to this point, the makefile is generated for Linux systems using GNU Debug. 
 
 ## Run the test cases presented in the paper 
 
