@@ -35,8 +35,8 @@ where **TestCase** is the number of the testcase and **NElems** will generate a 
    **BathymetryFlag**         - the parameter used to apply different bathymetry (more bathymetries can be implemented in [equation.f90](fv-solver-sw/src/bin/equation.f90))   
    **CFL**                    - the Courant-Friedrich-Levy condition  
    **Reconstruction**         - space discretization (1. first order, 2. second order TVD, 3. WENO3, 4. WENO5)    
-   **ReconstructionFix**      - space discretization where shocks occur, if necessary (elements are flagged with a shock indicator implemented in [shocksindicator.f90](fv-solver-sw/src/bin/shocksindicator.f90))     
-   **timescheme**             - time discretization (1. explicit Euler, 2. SSPRK64, 3. RK65, 4. DeC5, 5. PatankarDeC5, 6. PatankarEuler, 7. mPDeC2)   
+   **ReconstructionFix**      - space discretization where shocks occur, if necessary (elements are flagged with a shock indicator implemented in [shocksindicator.f90](fv-solver-sw/src/shocksindicator.f90))     
+   **timescheme**             - [time discretization](fv-solver-sw/src/timediscretization.f90) (1. explicit Euler, 2. SSPRK64, 3. RK65, 4. DeC5, 5. PatankarDeC5, 6. PatankarEuler, 7. mPDeC2)   
    **nOutputFiles**           - number of output files printed    
 
 By appropriately modifying these parameter and adding new codes, new test cases can be easily added to those already implemented.
