@@ -17,7 +17,7 @@ In the paper, six test cases are presented:
 1. Perturbation analysis (well-balanced, wet-dry)
 1. Circular dam break #1 (wet-dry)
 1. Circular dam break #2
-1. Wave over dry island
+1. Wave over dry island (wet-dry)
 
 In order to run them, the user can follow two simple procedures:
 
@@ -48,7 +48,10 @@ In the directory [weno-weights](weno-weights) the user can find two matlab scrip
 In particular, the two scripts provide the same results but the first one prints everything with symbolic notation whereas the second one only prints
 what it is needed for the reconstruction as a double. In both scripts, the user can set the number of cell averages, **J**, (odd number) and the quadrature 
 points, **x_quads**, where the reconstruction has to be computed (already few gaussian quadrature rules are specified, the code is setup with the 
-four-point rule). 
+four-point rule). The codes print out
+* smoothness indicators
+* coefficients of lower order polynomials
+* ideal weights for the linear high order reconstruction
 
 
 
