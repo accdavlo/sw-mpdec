@@ -1,4 +1,4 @@
-# Modified Patankar Deferred Correction Application for Shallow Water equations
+# Modified Patankar Deferred Correction WENO Code for Shallow Water Equations
 
 This is the public repository refering to the article [arXiv prepint to be put](https://arxiv.org) where we include the Fortran code which we used to develop the method.
 
@@ -9,7 +9,7 @@ This code is based on a finite volume WENO5 space discretization that is availab
 In order to compile the code the user can either go to [fv-solver-sw](fv-solver-sw) or [fv-solver-sw/src](fv-solver-sw/src)
 from a terminal and type **make**. This will compile the code and generate the executable called **main** in [fv-solver-sw/bin](fv-solver-sw/bin).
 
-## Run the test cases presented in the paper
+## Run the test cases presented in the paper 
 
 In the paper, six test cases are presented:
 1. Unsteady smooth vortex
@@ -38,3 +38,5 @@ where **TestCase** is the number of the testcase and **NElems** will generate a 
    **ReconstructionFix**      - space discretization where shocks occur, if necessary (elements are flagged with a shock indicator implemented in [shocksindicator.f90](fv-solver-sw/src/bin/shocksindicator.f90))     
    **timescheme**             - time discretization (1. explicit Euler, 2. SSPRK64, 3. RK65, 4. DeC5, 5. PatankarDeC5, 6. PatankarEuler, 7. mPDeC2)   
    **nOutputFiles**           - number of output files printed    
+
+By appropriately modifying these parameter and adding new codes, new test cases can be easily added to those already implemented.
