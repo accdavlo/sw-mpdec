@@ -19,5 +19,9 @@ In the paper, six test cases are presented:
 5. Circular dam break #2
 6. Wave over dry island
 
-In order to run them you could either go to [fv-solver-sw/bin](tree/main/fv-solver-sw/bin) and type **./make** *TestCase* *NElems* or you could
+In order to run them, the user can follow two simple procedures
+
+go to [fv-solver-sw/bin](tree/main/fv-solver-sw/bin) and type 
+**./make** *TestCase* *NElems* 
+
 manually open the script and set the parameters.
