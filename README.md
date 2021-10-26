@@ -9,8 +9,11 @@ This code is based on a finite volume WENO5 space discretization that is availab
 ## Compile the code
 
 In order to compile the code the user can either go to [fv-solver-sw](fv-solver-sw) or [fv-solver-sw/src](fv-solver-sw/src)
-from a terminal and type **make**. This will compile the code and generate the executable called **main** in [fv-solver-sw/bin](fv-solver-sw/bin). Up to this point, the makefile is generated for Linux systems using GNU Debug. For Mac systems, the path to the libraries must be set correctly in BLAS_LAPACK. 
+from a terminal and type **make**. This will compile the code and generate the executable called **main** in [fv-solver-sw/bin](fv-solver-sw/bin). Up to this point, the makefile is generated for Linux systems using GNU Debug. For Mac systems, the path to the libraries must be set correctly in BLAS_LAPACK.
 
+Depending on the **FCFLAGS** set in the [makefile](fv-solver-sw/src/makefile), the code can compiled in different ways. Two **FCFLAGS** are already available:
+* *WELLBALANCED* - subtract fluxes and source term corresponding to the exact solution one wants to preserve (new solutions can be set in the subroutine ExactFunctionWB in [equation.f90](fv-solver-sw/src/equation.f90))
+* *PATANKAR*     - recast the hyperbolic system as a production-destruction system (it is mandatory to set a Patankar scheme for time discretization)
 ## Run the test cases presented in the paper 
 
 In the paper, six test cases are presented:
