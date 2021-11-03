@@ -41,7 +41,7 @@ where **TestCase** is the number of the testcase and **NElems** will generate a 
   * **CFL**                    - the Courant-Friedrich-Levy condition  
   * **Reconstruction**         - space discretization (1. first order, 2. second order TVD, 3. WENO3, 4. WENO5)    
   * **ReconstructionFix**      - space discretization where shocks occur, if necessary (elements are flagged with a shock indicator implemented in [shocksindicator.f90](fv-solver-sw/src/shocksindicator.f90))     
-  * **timescheme**             - [time discretization](fv-solver-sw/src/timediscretization.f90) (1. explicit Euler, 2. SSPRK64, 3. RK65, 4. DeC5, 5. PatankarDeC5, 6. PatankarEuler, 7. mPDeC2)   
+  * **timescheme**             - [time discretization](fv-solver-sw/src/timediscretization.f90) (1. explicit Euler, 2. SSPRK64, 3. RK65, 4. DeC5, 5. mPDeC5, 6. mPEuler, 7. mPDeC2), here mP stands for modified Patankar
   * **nOutputFiles**           - number of output files printed    
 
 By appropriately modifying these parameter and adding new codes, new test cases can be easily added to those already implemented.
