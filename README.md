@@ -26,7 +26,7 @@ In the paper, six test cases are presented:
 
 In order to run them, the user can follow two simple procedures:
 
-* go to [fv-solver-sw/bin](tree/main/fv-solver-sw/bin) and type 
+* go to [fv-solver-sw/bin](fv-solver-sw/bin) and type 
 **./make TestCase NElems** 
 where **TestCase** is the number of the testcase and **NElems** will generate a mesh *NElems x NElems*;
 
