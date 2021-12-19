@@ -30,14 +30,14 @@ In order to run them, the user can follow two simple procedures:
 **./make TestCase NElems** 
 where **TestCase** is the number of the testcase and **NElems** will generate a mesh *NElems x NElems*;
 
-* manually open the script [parameters.f90](fv-solver-sw/src/bin/parameters.f90) and modify the setup considering that  
+* manually open the script [parameters.f90](fv-solver-sw/src/parameters.f90) and modify the setup considering that  
 
   * **InitialCondition**       - the number of the test case     
   * **TEnd**                   - the final time of the simulation   
   * **nElemsX (nElemsY)**      - the number of elements along x-direction (y-direction)    
   * **MESH_X0** and **MESH_X1**- impose the computational domain (either a square or a rectangle)   
   * **BoundaryConditionsType** - the color of the boundary condition to apply on the four boundaries (so far mPDeC only work with periodic BC, *BoundaryConditionsType=1*)   
-  * **BathymetryFlag**         - the parameter used to apply different bathymetries (new ones can be implemented in [equation.f90](fv-solver-sw/src/bin/equation.f90))   
+  * **BathymetryFlag**         - the parameter used to apply different bathymetries (new ones can be implemented in [equation.f90](fv-solver-sw/src/equation.f90))   
   * **CFL**                    - the Courant-Friedrich-Levy condition  
   * **Reconstruction**         - space discretization (1. first order, 2. second order TVD, 3. WENO3, 4. WENO5)    
   * **ReconstructionFix**      - space discretization where shocks occur, if necessary (elements are flagged with a shock indicator implemented in [shocksindicator.f90](fv-solver-sw/src/shocksindicator.f90))     
